@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+	class Object {
+		constructor(position) {
+			this.position = position;
+		}
+	}
+
+	class Player extends Object{
+		constructor(position, velocity) {
+			super(position);
+			this.velocity = velocity;
+		}
+
+		move(time){
+			this.position[0] += this.velocity[0] * time;
+			this.position[1] += this.velocity[1] * time;
+			this.position[2] += this.velocity[2] * time;
+		}
+
+	}
+
+	const Length = 1000000;
+
+	function createPlayer(length){
+		let result = [];
+		for (let i = 0; i < length; i++){
+			result.push(new Player([0.0, 0.0, 0.0], [1.0, 1.0, 1.0]))
+		}
+		return result;
+	}
+
+	const World = createPlayer(Length);
+
+	const Time = 1 / 60;
+
+	function update(time){
+		for(let i = 0; i < World.length; i++){
+			World[i].move(time)
+		}
+	}
+
+	console.time("oop");
+	update(Time);
+	console.timeEnd("oop");
+
+</script>
+</body>
+</html>

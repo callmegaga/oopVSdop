@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+	const Length = 1000000;
+	const PositionComponentList = [];
+	const VelocityComponentList = [];
+
+	function createPlayer(length){
+		let result = [];
+		for (let i = 0; i < length; i++){
+			const position = [0.0, 0.0, 0.0];
+			const velocity = [1.0, 1.0, 1.0];
+
+
+			result.push({
+				id: i,
+				position: position,
+				velocity: velocity,
+			});
+
+			PositionComponentList.push(position);
+			VelocityComponentList.push(velocity);
+		}
+		return result;
+	}
+
+	const World = createPlayer(Length);
+	const Time = 1 / 60;
+
+
+	function moveSystem(time){
+		for (let i = 0; i < VelocityComponentList.length; i++){
+			PositionComponentList[i][0] += VelocityComponentList[i][0] + time;
+			PositionComponentList[i][1] += VelocityComponentList[i][1] + time;
+			PositionComponentList[i][2] += VelocityComponentList[i][2] + time;
+		}
+	}
+
+
+	console.time("DOP");
+	moveSystem(Time);
+	console.timeEnd("DOP");
+</script>
+</body>
+</html>

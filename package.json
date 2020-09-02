@@ -1,0 +1,24 @@
+{
+  "name": "oopVSdop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "http-server -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callmegaga/oopVSdop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/callmegaga/oopVSdop/issues"
+  },
+  "homepage": "https://github.com/callmegaga/oopVSdop#readme",
+  "devDependencies": {
+    "http-server": "^0.12.3"
+  }
+}
