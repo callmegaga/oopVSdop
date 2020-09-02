@@ -7,6 +7,9 @@
 <body>
 
 <script>
+	const Length = 1000000;
+	const Time = 1 / 60;
+
 	class Object {
 		constructor(position) {
 			this.position = position;
@@ -27,7 +30,6 @@
 
 	}
 
-	const Length = 1000000;
 
 	function createPlayer(length){
 		let result = [];
@@ -38,8 +40,6 @@
 	}
 
 	const World = createPlayer(Length);
-
-	const Time = 1 / 60;
 
 	function update(time){
 		for(let i = 0; i < World.length; i++){

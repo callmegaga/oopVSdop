@@ -7,24 +7,30 @@
 <body>
 <script>
 	const Length = 1000000;
-	const PositionComponentList = [];
-	const VelocityComponentList = [];
+
+	const PositionComponentList = new Float32Array(Length * 3);
+	const VelocityComponentList = new Float32Array(Length * 3);
 
 	function createPlayer(length){
 		let result = [];
 		for (let i = 0; i < length; i++){
-			const position = [0.0, 0.0, 0.0];
-			const velocity = [1.0, 1.0, 1.0];
-
 
 			result.push({
 				id: i,
-				position: position,
-				velocity: velocity,
+				position: i,
+				velocity: i,
 			});
 
-			PositionComponentList.push(position);
-			VelocityComponentList.push(velocity);
+			let index = i * 3;
+
+			PositionComponentList[index] 	 = 0.0;
+			PositionComponentList[index + 1] = 0.0;
+			PositionComponentList[index + 2] = 0.0;
+
+			VelocityComponentList[index] 	 = 1.0;
+			VelocityComponentList[index + 1] = 1.0;
+			VelocityComponentList[index + 2] = 1.0;
+
 		}
 		return result;
 	}
@@ -34,13 +40,26 @@
 
 
 	function moveSystem(time){
-		for (let i = 0; i < VelocityComponentList.length; i++){
-			PositionComponentList[i][0] += VelocityComponentList[i][0] + time;
-			PositionComponentList[i][1] += VelocityComponentList[i][1] + time;
-			PositionComponentList[i][2] += VelocityComponentList[i][2] + time;
+		for (let i = 0; i < Length; i++){
+			let index = i * 3;
+
+			let x = PositionComponentList[index];
+			let y = PositionComponentList[index + 1];
+			let z = PositionComponentList[index + 2];
+
+			let v_x = VelocityComponentList[index];
+			let v_y = VelocityComponentList[index + 1];
+			let v_z = VelocityComponentList[index + 2];
+
+			x += v_x * time;
+			y += v_y * time;
+			z += v_z * time;
+
+			PositionComponentList[index] 	 = x;
+			PositionComponentList[index + 1] = y;
+			PositionComponentList[index + 2] = z;
 		}
 	}
-
 
 	console.time("DOP");
 	moveSystem(Time);
